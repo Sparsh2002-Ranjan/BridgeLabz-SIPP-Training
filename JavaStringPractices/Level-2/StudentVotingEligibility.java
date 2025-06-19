@@ -21,7 +21,7 @@ public class StudentVotingEligibility {
         int[] ages = new int[count];
 
         for (int i = 0; i < count; i++) {
-            ages[i] = rand.nextInt(90) + 10; // Random 2-digit age (10–99)
+            ages[i] = rand.nextInt(90) + 10; 
         }
 
         return ages;
