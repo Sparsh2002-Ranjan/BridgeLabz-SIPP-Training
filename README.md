@@ -30,10 +30,10 @@
    - Implemented popular sorting algorithms to arrange unsorted data efficiently.
 
 10. **Linear and Binary Search**
-   - Applied linear and binary search techniques to solve searching problems in various scenarios.
+    - Applied linear and binary search techniques to solve searching problems in various scenarios.
 
 11. **RunTime Analysis**
-   - Learned and applied basic concepts of time complexity and analyzed code performance effectively.
+    - Learned and applied basic concepts of time complexity and analyzed code performance effectively.
 
 
 
