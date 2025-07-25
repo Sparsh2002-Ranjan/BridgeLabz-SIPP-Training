@@ -61,7 +61,7 @@ public class Main {
         boolean b=true;
         while(b){
             System.out.println("press 1 for booking tickets");
-            System.out.println("press 2 to peek on the next customer");
+            System.out.println("press 2 to look the details of next customer");
             System.out.println("press 3 to serve next customer");
             System.out.println("press 4 to exit");
             int n=sc.nextInt();
@@ -113,11 +113,13 @@ public class Main {
                         break;
 
                     case 2:
-                        System.out.println("Next to be served: " + eventQueue.peekNext());
+                        if(eventQueue.isEmpty()) System.out.println("There is no next Customer right now");
+                        else System.out.println("Next to be served: " + eventQueue.peekNext());
                         break;
 
                     case 3:
-                        System.out.println("Serving: " + eventQueue.serveNext());
+                        if(eventQueue.isEmpty()) System.out.println("There is no Customer right now");
+                        else System.out.println("Serving: " + eventQueue.serveNext());
                         break;
 
                     case 4:
