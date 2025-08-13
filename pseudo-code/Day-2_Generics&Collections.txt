@@ -1,0 +1,25 @@
+Pseudo-code: Online Store Cart System
+1. Class Item { name, price }
+2. ShoppingCart:
+    - List<Item> cart
+    - Method addItem(Item)
+    - Method calculateTotal<T extends Number>(): sum prices
+3. Main:
+    - Create ShoppingCart
+    - Add items
+    - Print total price
+
+
+
+
+
+
+Pseudo-code: Hospital Department Mapper
+1. Map<String, List<Doctor>> departmentMap
+2. Add doctors to relevant departments
+3. Method filterBySpecialization(dept, specialization):
+    - Get list from departmentMap[dept]
+    - Return doctors where doctor.specialization == specialization
+4. Main:
+    - Populate map
+    - Call filterBySpecialization("Cardiology", "Heart Surgeon")

@@ -1,0 +1,15 @@
+1. Student Score Storage
+BEGIN
+    INITIALIZE HashMap<String, Integer> scores
+    ADD student names and scores
+    FIND max score using streams
+    PRINT student with highest score
+END
+
+2. Employee Record Keeper
+BEGIN
+    INITIALIZE ArrayList<Employee> employees
+    ADD Employee objects with department info
+    FILTER list where department == desiredDepartment using streams
+    PRINT filtered employees
+END

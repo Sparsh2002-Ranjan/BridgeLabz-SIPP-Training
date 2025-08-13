@@ -1,0 +1,44 @@
+Pseudo-code: Smart Grid Energy Usage Tracker
+
+1. Map<Zone, Map<Day, List<Reading>>> energyData
+
+2. Method recordReading(zone, day, reading):
+    - If zone not in energyData → add
+    - If day not in energyData[zone] → add
+    - Add reading to list
+
+3. Method calculatePeakUsage():
+    - For each zone in energyData:
+        - For each day in zone map:
+            - peak = max(readings)
+            - print zone, day, peak
+
+4. Main:
+    - Record sample readings
+    - Call calculatePeakUsage()
+
+
+
+
+**************************************************************************************************************
+
+
+
+
+Pseudo-code: Employee Bonus Distribution Engine
+
+1. Class Employee { name, department, rating, baseSalary }
+
+2. Method distributeBonus(List<Employee> employees):
+    - Group employees by department
+    - For each department:
+        - totalSalary = sum of baseSalary
+        - bonusPool = 10% of totalSalary
+        - totalRatings = sum of ratings
+        - For each employee:
+            - employeeBonus = (employee.rating / totalRatings) * bonusPool
+            - print employee name and bonus
+
+3. Main:
+    - Create employee list
+    - Call distributeBonus()
