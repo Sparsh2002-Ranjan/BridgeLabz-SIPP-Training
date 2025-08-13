@@ -1,0 +1,34 @@
+Pseudo-code: Traffic Signal Simulation
+1. Define ENUM TrafficLight { RED, YELLOW, GREEN }
+2. Class TrafficController:
+    - Attribute: currentLight (TrafficLight)
+    - Method: switchLight()
+        - if currentLight == RED → set GREEN
+        - if currentLight == GREEN → set YELLOW
+        - if currentLight == YELLOW → set RED
+    - Method: startSimulation(interval)
+        - Loop infinitely
+            - Print currentLight
+            - Wait for 'interval' seconds
+            - Call switchLight()
+3. Main:
+    - Create TrafficController object
+    - Call startSimulation(5)
+
+
+
+
+
+Pseudo-code: Smart Farming System
+1. Abstract Class Crop:
+    - Method: waterRequirement() → abstract
+    - Method: harvest() → abstract
+2. Class Rice extends Crop:
+    - waterRequirement(): Print "High water needed"
+    - harvest(): Print "Harvesting Rice"
+3. Class Wheat extends Crop:
+    - waterRequirement(): Print "Moderate water needed"
+    - harvest(): Print "Harvesting Wheat"
+4. Main:
+    - Create objects of Rice and Wheat
+    - Call waterRequirement() and harvest() on each

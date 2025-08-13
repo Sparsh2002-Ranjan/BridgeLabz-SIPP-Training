@@ -1,0 +1,35 @@
+Pseudo-code: Banking Portal
+1. Class Account:
+    - Attributes: accountNumber, balance
+    - Method: withdraw(amount)
+    - Method: deposit(amount)
+2. Class Saving extends Account:
+    - withdraw(amount):
+        - If balance - amount >= minimumBalance → deduct amount
+        - Else → print "Insufficient funds"
+3. Class Current extends Account:
+    - withdraw(amount):
+        - Allow overdraft up to limit
+4. Main:
+    - Create Saving and Current accounts
+    - Perform deposits and withdrawals
+
+
+
+
+
+Pseudo-code: Vehicle Rental System
+1. Abstract Class Vehicle:
+    - Attributes: model, registrationNumber
+    - Method: displayInfo() → abstract
+2. Interface Rentable:
+    - Method: rent()
+3. Class Car extends Vehicle implements Rentable
+4. Class Bike extends Vehicle implements Rentable
+5. Factory Class VehicleFactory:
+    - Method: createVehicle(type):
+        - if type == "Car" → return new Car()
+        - if type == "Bike" → return new Bike()
+6. Main:
+    - Use VehicleFactory to create vehicles
+    - Call rent() and displayInfo()

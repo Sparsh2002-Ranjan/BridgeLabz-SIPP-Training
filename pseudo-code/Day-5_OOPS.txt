@@ -1,0 +1,71 @@
+Pseudo-code: Healthcare Diagnosis Engine (Strategy Pattern)
+
+1. Interface DiagnosisStrategy:
+    - Method: diagnose(List<String> symptoms) → returns List<String> possibleDiseases
+
+2. Class RuleBasedDiagnosis implements DiagnosisStrategy:
+    - Match symptom patterns to disease list using predefined rules
+
+3. Class AIBasedDiagnosis implements DiagnosisStrategy:
+    - Use AI model to predict diseases from symptoms
+
+4. Class ProbabilityBasedDiagnosis implements DiagnosisStrategy:
+    - Assign probability scores to each possible disease based on statistical data
+
+5. Class DiagnosisContext:
+    - Attribute: DiagnosisStrategy strategy
+    - Method: setStrategy(DiagnosisStrategy strategy)
+    - Method: executeDiagnosis(symptoms) → strategy.diagnose(symptoms)
+
+6. Main:
+    - Create DiagnosisContext
+    - For General Medicine → set RuleBasedDiagnosis
+    - For Neurology → set AIBasedDiagnosis
+    - For future → set GeneticPatternDiagnosis without modifying old code
+    - Run executeDiagnosis() for patients
+
+
+
+
+***************************************************************************************************************
+
+
+
+
+
+Pseudo-code: Restaurant POS Billing System
+
+1. Interface TaxCalculator:
+    - Method: calculateTax(amount)
+
+2. Implementations:
+    - FoodTax (5% GST)
+    - BeverageTax (12% GST)
+    - ImportedTax (5% GST + customs duty)
+    - LuxuryTax (added later without changing main code)
+
+3. Interface DiscountPolicy:
+    - Method: applyDiscount(amount)
+
+4. Implementations:
+    - NoDiscount
+    - FlatDiscount (₹100 off)
+    - PercentageDiscount (10% off)
+    - BuyOneGetOne (added later without changing main code)
+
+5. Class Item { name, price, TaxCalculator taxCalculator }
+
+6. Class Bill:
+    - List<Item> items
+    - DiscountPolicy discountPolicy
+    - Method: calculateTotal():
+        - sum = 0
+        - for each item:
+            - sum += item.price + item.taxCalculator.calculateTax(item.price)
+        - sum = discountPolicy.applyDiscount(sum)
+        - return sum
+
+7. Main:
+    - Create items with appropriate TaxCalculator
+    - Set discount policy at runtime
+    - Calculate bill

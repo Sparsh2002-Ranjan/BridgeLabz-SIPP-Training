@@ -1,0 +1,30 @@
+Pseudo-code: Food Delivery System
+1. Class Customer { name, address, phone }
+2. Class Restaurant { name, menu }
+3. Class DeliveryBoy { name, vehicle }
+4. Class Order:
+    - Attribute: Customer customer
+    - Attribute: Restaurant restaurant
+    - Attribute: DeliveryBoy deliveryBoy
+    - Attribute: List<Item> items
+    - Method: placeOrder()
+    - Method: deliverOrder()
+5. Main:
+    - Create Customer, Restaurant, DeliveryBoy objects
+    - Create Order with above objects (composition)
+    - Call placeOrder() and deliverOrder()
+
+
+
+
+
+Pseudo-code: Medical Record Manager
+1. Interface Searchable:
+    - Method search(keyword)
+2. Interface Printable:
+    - Method print()
+3. Class LabReport implements Searchable, Printable
+4. Class Prescription implements Searchable, Printable
+5. Main:
+    - Create objects of LabReport and Prescription
+    - Use polymorphism to call search() and print() on both

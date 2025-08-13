@@ -47,7 +47,7 @@ class Car extends Vehicle implements GPS {
 
     @Override
     public double calculateFare(double distance) {
-        return getRatePerKm() * distance + 50; // ₹50 base charge
+        return getRatePerKm() * distance + 50; 
     }
 
     @Override
@@ -71,7 +71,7 @@ class Bike extends Vehicle implements GPS {
 
     @Override
     public double calculateFare(double distance) {
-        return getRatePerKm() * distance; // No base charge
+        return getRatePerKm() * distance; 
     }
 
     @Override
@@ -95,7 +95,7 @@ class Auto extends Vehicle implements GPS {
 
     @Override
     public double calculateFare(double distance) {
-        return getRatePerKm() * distance + 30; // ₹30 fixed base charge
+        return getRatePerKm() * distance + 30; 
     }
 
     @Override

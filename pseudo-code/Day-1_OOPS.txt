@@ -1,0 +1,19 @@
+1. Pet Adoption App
+BEGIN
+    DEFINE class Pet with attributes: name, age, type
+    DEFINE constructor to initialize attributes
+    DEFINE classes Dog, Cat, Bird that EXTEND Pet
+    EACH subclass constructor calls super() with type specific value
+    CREATE objects of Dog, Cat, Bird and display details
+END
+
+2. Library Membership Tracker
+BEGIN
+    DEFINE class Member with attributes: name, ID, membershipDate
+    DEFINE constructor to initialize attributes
+    DEFINE method checkMembershipValidity(currentDate)
+        IF currentDate - membershipDate <= 365 days
+            RETURN valid
+        ELSE
+            RETURN expired
+END

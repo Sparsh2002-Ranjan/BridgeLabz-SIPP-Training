@@ -104,7 +104,7 @@ public class HospitalManagement {
             }
         }
 
-        System.out.println("-----------------------------");
+        System.out.println();
     }
 
     public static void main(String[] args) {
