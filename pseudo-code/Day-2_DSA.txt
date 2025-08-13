@@ -1,0 +1,21 @@
+Pseudo-code: Online Quiz Timer
+1. Initialize circular array timeSlots[] with durations for each question
+2. For each question i in quiz:
+    - Set timer = timeSlots[i % length]
+    - While timer > 0:
+        - If timer == warningThreshold → Display warning
+        - Decrement timer by 1
+3. End quiz when all questions attempted
+
+
+
+
+
+Pseudo-code: Job Scheduler
+1. Define Job { id, deadline, processingTime }
+2. Use PriorityQueue sorted by earliest deadline
+3. While queue not empty:
+    - Poll job with highest priority
+    - Process job
+    - Update system clock
+4. Output job execution order

@@ -1,0 +1,29 @@
+Pseudo-code: Flight Price Analyzer
+1. Class Flight { flightNumber, price, duration }
+2. Define CustomComparator:
+    - Compare by price
+    - If prices equal → compare by duration
+3. Implement MergeSort for List<Flight> using CustomComparator
+4. Main:
+    - Input list of flights
+    - Sort flights using MergeSort
+    - Display sorted list
+
+
+
+
+
+Pseudo-code: Crime Prediction Heatmap
+1. Represent city as Graph:
+    - Nodes = zones
+    - Edges = connections between zones
+2. For each zone:
+    - Maintain crimeScore (based on historical data)
+3. DFS(zone, visited):
+    - Mark zone as visited
+    - If crimeScore > threshold → mark as high-risk
+    - For each neighbor not visited:
+        - Call DFS(neighbor)
+4. Main:
+    - Run DFS on all zones
+    - Output high-risk areas

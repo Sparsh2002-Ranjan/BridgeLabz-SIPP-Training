@@ -1,0 +1,53 @@
+Pseudo-code: Distributed Load Balancer (Round Robin with Dynamic Nodes)
+
+1. Queue<String> servers
+
+2. Method addServer(serverName):
+    - servers.add(serverName)
+
+3. Method removeServer(serverName):
+    - servers.remove(serverName)
+
+4. Method assignRequest(requestId):
+    - server = servers.poll()
+    - print "Request {requestId} → {server}"
+    - servers.add(server)
+
+5. Main:
+    - Initialize servers: S1, S2, S3
+    - For each request:
+        - assignRequest(requestId)
+    - Add server S4 at runtime
+    - Remove S2 if fails
+
+
+
+
+***********************************************************************************************************
+
+
+
+
+Pseudo-code: Autocomplete Search Suggestions (Trie)
+
+1. Class TrieNode:
+    - Map<Character, TrieNode> children
+    - boolean isEndOfWord
+    - int popularityScore
+
+2. Class Trie:
+    - root = new TrieNode()
+    - Method insert(keyword, popularityScore)
+    - Method searchPrefix(prefix) → returns node
+    - Method collectSuggestions(node, prefix, resultList)
+    - Method getTopNSuggestions(prefix, N):
+        - startNode = searchPrefix(prefix)
+        - collect all words from startNode
+        - sort by popularityScore
+        - return top N
+
+3. Main:
+    - Insert keywords
+    - Search with prefixes
+    - Add new keywords dynamically
+

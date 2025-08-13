@@ -1,0 +1,31 @@
+Pseudo-code: Patient Record Hashing
+1. Class Patient { id, name, age, diagnosis }
+2. HashMap<String, Patient> patientMap
+3. Method addPatient(patient):
+    - patientMap.put(patient.id, patient)
+4. Method getPatient(id):
+    - return patientMap.get(id)
+5. Method updatePatient(id, updatedPatient):
+    - patientMap.put(id, updatedPatient)
+6. Method deletePatient(id):
+    - patientMap.remove(id)
+7. Main:
+    - Add, retrieve, update, delete patients
+
+
+
+
+
+
+Pseudo-code: Maze Solver Bot (Backtracking)
+1. Represent maze as 2D grid (0 = path, 1 = wall)
+2. Method solveMaze(x, y):
+    - If (x, y) is goal → return true
+    - If (x, y) is safe:
+        - Mark (x, y) as part of path
+        - If solveMaze(x+1, y) → return true
+        - If solveMaze(x, y+1) → return true
+        - Backtrack: unmark (x, y)
+    - Return false
+3. Main:
+    - Call solveMaze(startX, startY)

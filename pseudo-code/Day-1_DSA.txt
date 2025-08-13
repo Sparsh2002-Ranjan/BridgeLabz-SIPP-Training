@@ -1,0 +1,29 @@
+1. Undo Feature in Text Editor
+BEGIN
+    INITIALIZE Stack undoStack
+    FUNCTION typeText(text)
+        PUSH text into undoStack
+    FUNCTION undo()
+        IF undoStack not empty
+            POP from undoStack
+        ELSE
+            PRINT "Nothing to undo"
+END
+
+2. Call Center Queue Management
+BEGIN
+    INITIALIZE Queue normalQueue
+    INITIALIZE Queue emergencyQueue
+    FUNCTION addCustomer(name, priority)
+        IF priority == emergency
+            ENQUEUE to emergencyQueue
+        ELSE
+            ENQUEUE to normalQueue
+    FUNCTION serveCustomer()
+        IF emergencyQueue not empty
+            DEQUEUE from emergencyQueue
+        ELSE IF normalQueue not empty
+            DEQUEUE from normalQueue
+        ELSE
+            PRINT "No customers"
+END
