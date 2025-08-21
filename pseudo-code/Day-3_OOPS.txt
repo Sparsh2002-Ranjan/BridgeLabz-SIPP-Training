@@ -1,30 +1,70 @@
 Pseudo-code: Food Delivery System
-1. Class Customer { name, address, phone }
-2. Class Restaurant { name, menu }
-3. Class DeliveryBoy { name, vehicle }
-4. Class Order:
-    - Attribute: Customer customer
-    - Attribute: Restaurant restaurant
-    - Attribute: DeliveryBoy deliveryBoy
-    - Attribute: List<Item> items
-    - Method: placeOrder()
-    - Method: deliverOrder()
-5. Main:
-    - Create Customer, Restaurant, DeliveryBoy objects
-    - Create Order with above objects (composition)
-    - Call placeOrder() and deliverOrder()
+
+BEGIN
+    DEFINE CLASS Customer
+        ATTRIBUTE name
+        ATTRIBUTE address
+        ATTRIBUTE phone
+
+    DEFINE CLASS Restaurant
+        ATTRIBUTE name
+        ATTRIBUTE menu
+
+    DEFINE CLASS DeliveryBoy
+        ATTRIBUTE name
+        ATTRIBUTE vehicle
+
+    DEFINE CLASS Order
+        ATTRIBUTE customer (type Customer)
+        ATTRIBUTE restaurant (type Restaurant)
+        ATTRIBUTE deliveryBoy (type DeliveryBoy)
+        ATTRIBUTE items (list)
+
+        DEFINE METHOD placeOrder()
+            PRINT "Order placed"
+
+        DEFINE METHOD deliverOrder()
+            PRINT "Order delivered"
+
+    DEFINE MAIN METHOD
+        INITIALIZE customer
+        INITIALIZE restaurant
+        INITIALIZE deliveryBoy
+        INITIALIZE order WITH customer, restaurant, deliveryBoy, items
+        CALL order.placeOrder()
+        CALL order.deliverOrder()
+END
 
 
+
+********************************************************************************************************************
 
 
 
 Pseudo-code: Medical Record Manager
-1. Interface Searchable:
-    - Method search(keyword)
-2. Interface Printable:
-    - Method print()
-3. Class LabReport implements Searchable, Printable
-4. Class Prescription implements Searchable, Printable
-5. Main:
-    - Create objects of LabReport and Prescription
-    - Use polymorphism to call search() and print() on both
+
+BEGIN
+    DEFINE INTERFACE Searchable
+        DEFINE METHOD search(keyword)
+
+    DEFINE INTERFACE Printable
+        DEFINE METHOD print()
+
+    DEFINE CLASS LabReport IMPLEMENTS Searchable, Printable
+        DEFINE METHOD search(keyword)
+            PRINT "Searching in lab report"
+        DEFINE METHOD print()
+            PRINT "Printing lab report"
+
+    DEFINE CLASS Prescription IMPLEMENTS Searchable, Printable
+        DEFINE METHOD search(keyword)
+            PRINT "Searching in prescription"
+        DEFINE METHOD print()
+            PRINT "Printing prescription"
+
+    DEFINE MAIN METHOD
+        INITIALIZE list_of_records
+        FOR EACH record IN list_of_records
+            CALL record.search(keyword)
+            CALL record.print()
+END

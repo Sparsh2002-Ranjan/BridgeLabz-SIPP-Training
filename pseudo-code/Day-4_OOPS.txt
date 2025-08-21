@@ -1,35 +1,81 @@
 Pseudo-code: Banking Portal
-1. Class Account:
-    - Attributes: accountNumber, balance
-    - Method: withdraw(amount)
-    - Method: deposit(amount)
-2. Class Saving extends Account:
-    - withdraw(amount):
-        - If balance - amount >= minimumBalance → deduct amount
-        - Else → print "Insufficient funds"
-3. Class Current extends Account:
-    - withdraw(amount):
-        - Allow overdraft up to limit
-4. Main:
-    - Create Saving and Current accounts
-    - Perform deposits and withdrawals
+BEGIN
+    DEFINE CLASS Account
+        ATTRIBUTE accountNumber
+        ATTRIBUTE balance
 
+        DEFINE METHOD withdraw(amount)
+            // To be overridden by subclasses
+
+        DEFINE METHOD deposit(amount)
+            INCREASE balance BY amount
+
+    DEFINE CLASS Saving EXTENDS Account
+        ATTRIBUTE minimumBalance
+
+        DEFINE METHOD withdraw(amount)
+            IF balance - amount >= minimumBalance
+                DECREASE balance BY amount
+            ELSE
+                PRINT "Insufficient funds"
+
+    DEFINE CLASS Current EXTENDS Account
+        ATTRIBUTE overdraftLimit
+
+        DEFINE METHOD withdraw(amount)
+            IF balance - amount >= -overdraftLimit
+                DECREASE balance BY amount
+            ELSE
+                PRINT "Overdraft limit exceeded"
+
+    DEFINE MAIN METHOD
+        INITIALIZE savingAccount
+        INITIALIZE currentAccount
+        PERFORM deposit and withdraw operations ON accounts
+END
+
+
+
+
+*********************************************************************************************
 
 
 
 
 Pseudo-code: Vehicle Rental System
-1. Abstract Class Vehicle:
-    - Attributes: model, registrationNumber
-    - Method: displayInfo() → abstract
-2. Interface Rentable:
-    - Method: rent()
-3. Class Car extends Vehicle implements Rentable
-4. Class Bike extends Vehicle implements Rentable
-5. Factory Class VehicleFactory:
-    - Method: createVehicle(type):
-        - if type == "Car" → return new Car()
-        - if type == "Bike" → return new Bike()
-6. Main:
-    - Use VehicleFactory to create vehicles
-    - Call rent() and displayInfo()
+BEGIN
+    DEFINE ABSTRACT CLASS Vehicle
+        ATTRIBUTE model
+        ATTRIBUTE registrationNumber
+        DEFINE ABSTRACT METHOD displayInfo()
+
+    DEFINE INTERFACE Rentable
+        DEFINE METHOD rent()
+
+    DEFINE CLASS Car EXTENDS Vehicle IMPLEMENTS Rentable
+        DEFINE METHOD displayInfo()
+            PRINT "Car details"
+        DEFINE METHOD rent()
+            PRINT "Car rented"
+
+    DEFINE CLASS Bike EXTENDS Vehicle IMPLEMENTS Rentable
+        DEFINE METHOD displayInfo()
+            PRINT "Bike details"
+        DEFINE METHOD rent()
+            PRINT "Bike rented"
+
+    DEFINE CLASS VehicleFactory
+        DEFINE METHOD createVehicle(type)
+            IF type == "Car"
+                RETURN new Car()
+            ELSE IF type == "Bike"
+                RETURN new Bike()
+
+    DEFINE MAIN METHOD
+        INITIALIZE vehicleList
+        FOR EACH type IN requestedVehicleTypes
+            vehicle = VehicleFactory.createVehicle(type)
+            CALL vehicle.rent()
+            CALL vehicle.displayInfo()
+END
+

@@ -1,29 +1,43 @@
 Pseudo-code: Healthcare Diagnosis Engine (Strategy Pattern)
+BEGIN
+    DEFINE INTERFACE DiagnosisStrategy
+        METHOD diagnose(symptoms: List) RETURNS List
 
-1. Interface DiagnosisStrategy:
-    - Method: diagnose(List<String> symptoms) → returns List<String> possibleDiseases
+    DEFINE CLASS RuleBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+        METHOD diagnose(symptoms: List)
+            MATCH symptoms WITH predefinedRules
+            RETURN matchingDiseases
 
-2. Class RuleBasedDiagnosis implements DiagnosisStrategy:
-    - Match symptom patterns to disease list using predefined rules
+    DEFINE CLASS AIBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+        METHOD diagnose(symptoms: List)
+            LOAD trainedAIModel
+            PREDICT diseases FROM symptoms
+            RETURN predictedDiseases
 
-3. Class AIBasedDiagnosis implements DiagnosisStrategy:
-    - Use AI model to predict diseases from symptoms
+    DEFINE CLASS ProbabilityBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+        METHOD diagnose(symptoms: List)
+            CALCULATE probabilityScore FOR each possible disease
+            RETURN diseases WITH scores
 
-4. Class ProbabilityBasedDiagnosis implements DiagnosisStrategy:
-    - Assign probability scores to each possible disease based on statistical data
+    DEFINE CLASS DiagnosisContext
+        ATTRIBUTE strategy: DiagnosisStrategy
+        METHOD setStrategy(strategy: DiagnosisStrategy)
+            SET this.strategy = strategy
+        METHOD executeDiagnosis(symptoms: List)
+            RETURN strategy.diagnose(symptoms)
 
-5. Class DiagnosisContext:
-    - Attribute: DiagnosisStrategy strategy
-    - Method: setStrategy(DiagnosisStrategy strategy)
-    - Method: executeDiagnosis(symptoms) → strategy.diagnose(symptoms)
+    DEFINE MAIN
+        CREATE context AS DiagnosisContext
 
-6. Main:
-    - Create DiagnosisContext
-    - For General Medicine → set RuleBasedDiagnosis
-    - For Neurology → set AIBasedDiagnosis
-    - For future → set GeneticPatternDiagnosis without modifying old code
-    - Run executeDiagnosis() for patients
+        SET context.strategy = RuleBasedDiagnosis
+        CALL context.executeDiagnosis(symptomsForGeneralMedicine)
 
+        SET context.strategy = AIBasedDiagnosis
+        CALL context.executeDiagnosis(symptomsForNeurology)
+
+        SET context.strategy = GeneticPatternDiagnosis (future strategy)
+        CALL context.executeDiagnosis(symptomsForGenetics)
+END
 
 
 
@@ -34,38 +48,74 @@ Pseudo-code: Healthcare Diagnosis Engine (Strategy Pattern)
 
 
 Pseudo-code: Restaurant POS Billing System
+BEGIN
+    DEFINE INTERFACE TaxCalculator
+        METHOD calculateTax(amount)
 
-1. Interface TaxCalculator:
-    - Method: calculateTax(amount)
+    DEFINE CLASS FoodTax IMPLEMENTS TaxCalculator
+        METHOD calculateTax(amount)
+            RETURN amount * 0.05
 
-2. Implementations:
-    - FoodTax (5% GST)
-    - BeverageTax (12% GST)
-    - ImportedTax (5% GST + customs duty)
-    - LuxuryTax (added later without changing main code)
+    DEFINE CLASS BeverageTax IMPLEMENTS TaxCalculator
+        METHOD calculateTax(amount)
+            RETURN amount * 0.12
 
-3. Interface DiscountPolicy:
-    - Method: applyDiscount(amount)
+    DEFINE CLASS ImportedTax IMPLEMENTS TaxCalculator
+        METHOD calculateTax(amount)
+            RETURN (amount * 0.05) + customsDuty(amount)
 
-4. Implementations:
-    - NoDiscount
-    - FlatDiscount (₹100 off)
-    - PercentageDiscount (10% off)
-    - BuyOneGetOne (added later without changing main code)
+    DEFINE CLASS LuxuryTax IMPLEMENTS TaxCalculator   // Added later without changing main code
+        METHOD calculateTax(amount)
+            RETURN amount * 0.18
 
-5. Class Item { name, price, TaxCalculator taxCalculator }
+    DEFINE INTERFACE DiscountPolicy
+        METHOD applyDiscount(amount)
 
-6. Class Bill:
-    - List<Item> items
-    - DiscountPolicy discountPolicy
-    - Method: calculateTotal():
-        - sum = 0
-        - for each item:
-            - sum += item.price + item.taxCalculator.calculateTax(item.price)
-        - sum = discountPolicy.applyDiscount(sum)
-        - return sum
+    DEFINE CLASS NoDiscount IMPLEMENTS DiscountPolicy
+        METHOD applyDiscount(amount)
+            RETURN amount
 
-7. Main:
-    - Create items with appropriate TaxCalculator
-    - Set discount policy at runtime
-    - Calculate bill
+    DEFINE CLASS FlatDiscount IMPLEMENTS DiscountPolicy
+        METHOD applyDiscount(amount)
+            RETURN amount - 100
+
+    DEFINE CLASS PercentageDiscount IMPLEMENTS DiscountPolicy
+        METHOD applyDiscount(amount)
+            RETURN amount * 0.90
+
+    DEFINE CLASS BuyOneGetOne IMPLEMENTS DiscountPolicy  // Added later without changing main code
+        METHOD applyDiscount(amount)
+            APPLY buyOneGetOneLogic
+            RETURN updatedAmount
+
+    DEFINE CLASS Item
+        ATTRIBUTE name
+        ATTRIBUTE price
+        ATTRIBUTE taxCalculator: TaxCalculator
+        CONSTRUCTOR(name, price, taxCalculator)
+            SET attributes
+
+    DEFINE CLASS Bill
+        ATTRIBUTE items: List
+        ATTRIBUTE discountPolicy: DiscountPolicy
+        METHOD calculateTotal()
+            sum = 0
+            FOR each item IN items
+                sum += item.price + item.taxCalculator.calculateTax(item.price)
+            sum = discountPolicy.applyDiscount(sum)
+            RETURN sum
+
+    DEFINE MAIN
+        CREATE item1 = Item("Burger", 200, FoodTax)
+        CREATE item2 = Item("Cola", 100, BeverageTax)
+        CREATE item3 = Item("Imported Cheese", 500, ImportedTax)
+
+        CREATE bill AS Bill
+        ADD item1, item2, item3 TO bill.items
+
+        SET bill.discountPolicy = PercentageDiscount
+        PRINT bill.calculateTotal()
+
+        SET bill.discountPolicy = BuyOneGetOne  // Can switch at runtime
+        PRINT bill.calculateTotal()
+END

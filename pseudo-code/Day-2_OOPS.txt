@@ -1,34 +1,64 @@
 Pseudo-code: Traffic Signal Simulation
-1. Define ENUM TrafficLight { RED, YELLOW, GREEN }
-2. Class TrafficController:
-    - Attribute: currentLight (TrafficLight)
-    - Method: switchLight()
-        - if currentLight == RED → set GREEN
-        - if currentLight == GREEN → set YELLOW
-        - if currentLight == YELLOW → set RED
-    - Method: startSimulation(interval)
-        - Loop infinitely
-            - Print currentLight
-            - Wait for 'interval' seconds
-            - Call switchLight()
-3. Main:
-    - Create TrafficController object
-    - Call startSimulation(5)
+BEGIN
+    DEFINE ENUM TrafficLight { RED, YELLOW, GREEN }
+
+    DEFINE CLASS TrafficController
+        ATTRIBUTE currentLight (type TrafficLight)
+
+        DEFINE CONSTRUCTOR(initialLight)
+            SET currentLight = initialLight
+
+        DEFINE METHOD switchLight()
+            IF currentLight == RED
+                SET currentLight = GREEN
+            ELSE IF currentLight == GREEN
+                SET currentLight = YELLOW
+            ELSE IF currentLight == YELLOW
+                SET currentLight = RED
+
+        DEFINE METHOD startSimulation(interval)
+            LOOP infinitely
+                PRINT currentLight
+                WAIT interval seconds
+                CALL switchLight()
+
+    DEFINE MAIN METHOD
+        INITIALIZE signalController WITH starting light = RED
+        CALL signalController.startSimulation(interval)
+END
+
+
+
+
+****************************************************************************************************************************
 
 
 
 
 
 Pseudo-code: Smart Farming System
-1. Abstract Class Crop:
-    - Method: waterRequirement() → abstract
-    - Method: harvest() → abstract
-2. Class Rice extends Crop:
-    - waterRequirement(): Print "High water needed"
-    - harvest(): Print "Harvesting Rice"
-3. Class Wheat extends Crop:
-    - waterRequirement(): Print "Moderate water needed"
-    - harvest(): Print "Harvesting Wheat"
-4. Main:
-    - Create objects of Rice and Wheat
-    - Call waterRequirement() and harvest() on each
+
+BEGIN
+    DEFINE ABSTRACT CLASS Crop
+        DEFINE ABSTRACT METHOD waterRequirement()
+        DEFINE ABSTRACT METHOD harvest()
+
+    DEFINE CLASS Rice EXTENDS Crop
+        DEFINE METHOD waterRequirement()
+            PRINT "High water needed"
+        DEFINE METHOD harvest()
+            PRINT "Harvesting Rice"
+
+    DEFINE CLASS Wheat EXTENDS Crop
+        DEFINE METHOD waterRequirement()
+            PRINT "Moderate water needed"
+        DEFINE METHOD harvest()
+            PRINT "Harvesting Wheat"
+
+    DEFINE MAIN METHOD
+        INITIALIZE list_of_crops
+        FOR EACH crop IN list_of_crops
+            CALL crop.waterRequirement()
+            CALL crop.harvest()
+END
+
