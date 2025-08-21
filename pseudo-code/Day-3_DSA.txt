@@ -1,31 +1,56 @@
 Pseudo-code: Patient Record Hashing
-1. Class Patient { id, name, age, diagnosis }
-2. HashMap<String, Patient> patientMap
-3. Method addPatient(patient):
-    - patientMap.put(patient.id, patient)
-4. Method getPatient(id):
-    - return patientMap.get(id)
-5. Method updatePatient(id, updatedPatient):
-    - patientMap.put(id, updatedPatient)
-6. Method deletePatient(id):
-    - patientMap.remove(id)
-7. Main:
-    - Add, retrieve, update, delete patients
 
+BEGIN
+    DEFINE CLASS Patient
+        ATTRIBUTE id
+        ATTRIBUTE name
+        ATTRIBUTE age
+        ATTRIBUTE diagnosis
+
+    INITIALIZE hashMap patientMap (key: id, value: Patient)
+
+    DEFINE METHOD addPatient(patient)
+        PUT patient INTO patientMap WITH key = patient.id
+
+    DEFINE METHOD getPatient(id)
+        RETURN patientMap[id]
+
+    DEFINE METHOD updatePatient(id, updatedPatient)
+        PUT updatedPatient INTO patientMap WITH key = id
+
+    DEFINE METHOD deletePatient(id)
+        REMOVE entry WITH key = id FROM patientMap
+
+    DEFINE MAIN METHOD
+        PERFORM add, retrieve, update, delete operations ON patientMap
+END
+
+
+
+
+***************************************************************************************************************
 
 
 
 
 
 Pseudo-code: Maze Solver Bot (Backtracking)
-1. Represent maze as 2D grid (0 = path, 1 = wall)
-2. Method solveMaze(x, y):
-    - If (x, y) is goal → return true
-    - If (x, y) is safe:
-        - Mark (x, y) as part of path
-        - If solveMaze(x+1, y) → return true
-        - If solveMaze(x, y+1) → return true
-        - Backtrack: unmark (x, y)
-    - Return false
-3. Main:
-    - Call solveMaze(startX, startY)
+BEGIN
+    REPRESENT maze AS 2D grid (0 = path, 1 = wall)
+
+    DEFINE METHOD solveMaze(x, y)
+        IF (x, y) IS goal
+            RETURN true
+        IF position (x, y) IS safe
+            MARK (x, y) AS part_of_path
+            IF solveMaze(x + 1, y)
+                RETURN true
+            IF solveMaze(x, y + 1)
+                RETURN true
+            UNMARK (x, y)  // backtrack
+        RETURN false
+
+    DEFINE MAIN METHOD
+        CALL solveMaze(startX, startY)
+END
+
