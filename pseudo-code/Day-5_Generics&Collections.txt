@@ -1,21 +1,29 @@
 Pseudo-code: Smart Grid Energy Usage Tracker
+BEGIN
+    DEFINE energyData AS Map<Zone, Map<Day, List<Reading>>>
 
-1. Map<Zone, Map<Day, List<Reading>>> energyData
+    FUNCTION recordReading(zone, day, reading)
+        IF zone NOT IN energyData
+            SET energyData[zone] = empty map
+        IF day NOT IN energyData[zone]
+            SET energyData[zone][day] = empty list
+        ADD reading TO energyData[zone][day]
 
-2. Method recordReading(zone, day, reading):
-    - If zone not in energyData → add
-    - If day not in energyData[zone] → add
-    - Add reading to list
+    FUNCTION calculatePeakUsage()
+        FOR EACH zone IN energyData
+            FOR EACH day IN energyData[zone]
+                SET peak = MAX VALUE FROM energyData[zone][day]
+                PRINT "Zone: " + zone + ", Day: " + day + ", Peak Usage: " + peak
 
-3. Method calculatePeakUsage():
-    - For each zone in energyData:
-        - For each day in zone map:
-            - peak = max(readings)
-            - print zone, day, peak
+    MAIN
+        CALL recordReading("ZoneA", "Monday", 120)
+        CALL recordReading("ZoneA", "Monday", 150)
+        CALL recordReading("ZoneA", "Tuesday", 180)
+        CALL recordReading("ZoneB", "Monday", 90)
+        CALL recordReading("ZoneB", "Tuesday", 110)
 
-4. Main:
-    - Record sample readings
-    - Call calculatePeakUsage()
+        CALL calculatePeakUsage()
+END
 
 
 
@@ -27,18 +35,42 @@ Pseudo-code: Smart Grid Energy Usage Tracker
 
 Pseudo-code: Employee Bonus Distribution Engine
 
-1. Class Employee { name, department, rating, baseSalary }
+BEGIN
+    CLASS Employee
+        DEFINE name AS STRING
+        DEFINE department AS STRING
+        DEFINE rating AS DECIMAL
+        DEFINE baseSalary AS DECIMAL
 
-2. Method distributeBonus(List<Employee> employees):
-    - Group employees by department
-    - For each department:
-        - totalSalary = sum of baseSalary
-        - bonusPool = 10% of totalSalary
-        - totalRatings = sum of ratings
-        - For each employee:
-            - employeeBonus = (employee.rating / totalRatings) * bonusPool
-            - print employee name and bonus
+        CONSTRUCTOR(name, department, rating, baseSalary)
+            SET this.name = name
+            SET this.department = department
+            SET this.rating = rating
+            SET this.baseSalary = baseSalary
 
-3. Main:
-    - Create employee list
-    - Call distributeBonus()
+    FUNCTION distributeBonus(employees)
+        DEFINE departmentMap AS Map<department, List<Employee>>
+
+        FOR EACH employee IN employees
+            IF employee.department NOT IN departmentMap
+                SET departmentMap[employee.department] = empty list
+            ADD employee TO departmentMap[employee.department]
+
+        FOR EACH department IN departmentMap
+            SET totalSalary = SUM(baseSalary) FOR employees IN departmentMap[department]
+            SET bonusPool = totalSalary * 0.10
+            SET totalRatings = SUM(rating) FOR employees IN departmentMap[department]
+
+            FOR EACH employee IN departmentMap[department]
+                SET employeeBonus = (employee.rating / totalRatings) * bonusPool
+                PRINT "Employee: " + employee.name + ", Bonus: " + employeeBonus
+
+    MAIN
+        DEFINE employees AS empty list
+        ADD new Employee("Alice", "HR", 4.5, 50000) TO employees
+        ADD new Employee("Bob", "HR", 3.5, 45000) TO employees
+        ADD new Employee("Charlie", "IT", 5.0, 60000) TO employees
+        ADD new Employee("David", "IT", 4.0, 55000) TO employees
+
+        CALL distributeBonus(employees)
+END
