@@ -1,0 +1,79 @@
+//Daily Tasks Organiser
+
+Class DailyTasksOrganizer
+    Attributes:
+        tasks ← LinkedHashMap<Integer, String>
+        nextTaskId ← 1
+
+    Methods:
+        addTask(description):
+            tasks[nextTaskId] = description
+            Print "Task added: " + nextTaskId + " → " + description
+            nextTaskId = nextTaskId + 1
+
+        removeTask(taskId):
+            If taskId exists in tasks:
+                Remove tasks[taskId]
+                Print "Task " + taskId + " removed."
+            Else:
+                Print "Task not found."
+
+        viewTasks():
+            Print "Pending Tasks:"
+            For each entry in tasks (in insertion order):
+                Print entry.key + " → " + entry.value
+
+Main Program:
+    organizer = new DailyTasksOrganizer()
+    
+    organizer.addTask("Check emails")           // 1
+    organizer.addTask("Prepare sales report")   // 2
+    organizer.addTask("Call client")            // 3
+
+    organizer.viewTasks()
+
+    organizer.removeTask(2)                     // Remove completed task
+    organizer.viewTasks()                       // Remaining: 1, 3
+
+
+
+
+
+*************************************************************************************************************************
+
+
+
+
+//Simple Word Counter
+
+Class WordCounter
+    Methods:
+        countWords(paragraph):
+            words = split paragraph into words
+            For each word in words:
+                word = lowercase(word)
+                word = remove punctuation
+                If word in map:
+                    map[word] = map[word] + 1
+                Else:
+                    map[word] = 1
+
+            sortedWords = sort map entries by value descending, then key ascending
+            For each entry in sortedWords:
+                Print entry.key + " (" + entry.value + ")"
+
+Main Program:
+    paragraph = "The news today is about the rise in technology trends."
+    counter = new WordCounter()
+    counter.countWords(paragraph)
+
+Expected Output:
+    the (2)
+    about (1)
+    in (1)
+    is (1)
+    news (1)
+    rise (1)
+    technology (1)
+    today (1)
+    trends (1)

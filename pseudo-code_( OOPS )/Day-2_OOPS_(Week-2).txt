@@ -1,0 +1,97 @@
+//Online Exam Portal
+
+
+Class User
+    Attributes:
+        username
+        password
+    Methods:
+        login():
+            Print "Checking credentials..."
+            If username and password are valid:
+                Print "Login successful"
+            Else:
+                Print "Login failed"
+
+Class Student extends User
+    Attributes:
+        enrolledCourse
+    Methods:
+        login():
+            Print "Checking student login..."
+            If username and password are valid AND enrolledCourse is not null:
+                Print "Student login successful. Show available exams."
+            Else:
+                Print "Student login failed. Not registered or not enrolled."
+
+Class Admin extends User
+    Attributes:
+        role
+    Methods:
+        login():
+            Print "Checking admin login..."
+            If username and password are valid AND role == "admin":
+                Print "Admin login successful. Show exam management tools."
+            Else:
+                Print "Admin login failed. Invalid staff credentials."
+
+Main Program:
+    student1 = new Student("john123", "pass123", "Java101")
+    student1.login()
+
+    admin1 = new Admin("adminUser", "adminPass", "admin")
+    admin1.login()
+
+
+
+
+
+
+***************************************************************************************************************************
+
+
+
+
+
+//Parking Lot Ticketing System
+
+
+
+Class Vehicle
+    Attributes:
+        vehicleNumber
+        entryTime
+    Methods:
+        calculateFee(exitTime):
+            Return 0   // default, will be overridden
+
+Class Car extends Vehicle
+    Methods:
+        calculateFee(exitTime):
+            hours = difference between exitTime and entryTime (rounded up)
+            fee = 50 + (hours - 1) * 30   // first hour = ₹50, then ₹30/hour
+            Return fee
+
+Class Bike extends Vehicle
+    Methods:
+        calculateFee(exitTime):
+            hours = difference between exitTime and entryTime (rounded up)
+            fee = 20 + (hours - 1) * 10   // first hour = ₹20, then ₹10/hour
+            Return fee
+
+Class Truck extends Vehicle
+    Methods:
+        calculateFee(exitTime):
+            hours = difference between exitTime and entryTime (rounded up)
+            fee = 100 + (hours - 1) * 50  // first hour = ₹100, then ₹50/hour
+            Return fee
+
+Main Program:
+    car1 = new Car("KA05AB1234", 10:00)
+    bike1 = new Bike("KA05XY7890", 11:15)
+    truck1 = new Truck("KA09TR5566", 09:30)
+
+    Print "---- Evening Exit ----"
+    Print "Car fee: " + car1.calculateFee(13:30)   // 3.5 hrs → ₹125
+    Print "Bike fee: " + bike1.calculateFee(12:00) // 0.75 hrs → ₹30
+    Print "Truck fee: " + truck1.calculateFee(14:00) // 4.5 hrs → ₹325

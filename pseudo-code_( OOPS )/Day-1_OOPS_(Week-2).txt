@@ -1,0 +1,108 @@
+//Online Exam Portal
+
+Class User
+    Attributes:
+        username
+        password
+    Methods:
+        login():
+            Print "Checking credentials for user..."
+            If username and password are valid:
+                Print "Login successful"
+            Else:
+                Print "Login failed"
+
+Class Student extends User
+    Attributes:
+        enrolledCourse
+    Methods:
+        login():
+            Print "Checking student credentials..."
+            If username and password are valid AND enrolledCourse is not null:
+                Print "Student login successful. Show available exams."
+            Else:
+                Print "Student login failed. Either not registered or not enrolled."
+
+Class Admin extends User
+    Attributes:
+        staffID
+        role
+    Methods:
+        login():
+            Print "Checking admin credentials..."
+            If username and password are valid AND role == 'admin':
+                Print "Admin login successful. Show exam management tools."
+            Else:
+                Print "Admin login failed. Insufficient privileges."
+
+Main Program:
+    Create Student object student1 (username="john123", password="pass123", enrolledCourse="Java101")
+    student1.login()
+
+    Create Admin object admin1 (username="adminUser", password="adminPass", role="admin")
+    admin1.login()
+
+
+
+
+**************************************************************************************************************************
+
+
+
+
+//Movie Ticket Booking
+
+Class Ticket
+    Attributes:
+        movieName
+        seatNumber
+        price
+        bookingStatus (true/false)
+    Methods:
+        showTicketDetails():
+            Print movieName, seatNumber, price, bookingStatus
+
+Class Theatre
+    Attributes:
+        name
+        availableSeats (List of seats)
+        tickets (List of Ticket objects)
+    Methods:
+        issueTicket(movieName, seatNumber, price):
+            If seatNumber in availableSeats:
+                Create Ticket t(movieName, seatNumber, price, bookingStatus=true)
+                Add t to tickets
+                Remove seatNumber from availableSeats
+                Print "Ticket issued successfully"
+                Return t
+            Else:
+                Print "Seat not available"
+                Return null
+
+        cancelTicket(ticket):
+            If ticket in tickets AND ticket.bookingStatus == true:
+                ticket.bookingStatus = false
+                Add ticket.seatNumber back to availableSeats
+                Print "Ticket cancelled successfully"
+
+Class Customer
+    Attributes:
+        name
+        bookedTickets (List of Ticket)
+    Methods:
+        browseMovies(theatre):
+            Print list of available movies in theatre
+        bookTicket(theatre, movieName, seatNumber, price):
+            ticket = theatre.issueTicket(movieName, seatNumber, price)
+            If ticket != null:
+                Add ticket to bookedTickets
+        cancelTicket(theatre, ticket):
+            theatre.cancelTicket(ticket)
+            Remove ticket from bookedTickets
+
+Main Program:
+    Create Theatre obj theatre1 (name="PVR", availableSeats=["A12","A13","A14"])
+    Create Customer obj customer1 (name="Ravi")
+
+    customer1.bookTicket(theatre1, "Avengers: Endgame", "A12", 300)
+    customer1.cancelTicket(theatre1, ticketBooked)

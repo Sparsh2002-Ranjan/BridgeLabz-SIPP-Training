@@ -1,0 +1,123 @@
+//Bus Route Navigator
+
+
+Class Node
+    Attributes:
+        stopName
+        next (reference to next Node)
+
+Class BusRoute
+    Attributes:
+        head (first stop in the route)
+    Methods:
+        addStop(newStop, afterStop):
+            newNode = new Node(newStop)
+            If head == null:
+                head = newNode
+            Else if afterStop is null:
+                Traverse to end of list
+                last.next = newNode
+            Else:
+                Traverse to find node with stopName == afterStop
+                If found:
+                    newNode.next = current.next
+                    current.next = newNode
+                Else:
+                    Print "Stop not found"
+
+        removeStop(stopName):
+            If head == null: return
+            If head.stopName == stopName:
+                head = head.next
+                return
+            Traverse list until current.stopName == stopName
+            If found:
+                previous.next = current.next
+            Else:
+                Print "Stop not found"
+
+        searchStop(stopName):
+            Traverse from head
+            If stopName matches:
+                Print stopName + " is in the route"
+                Return true
+            Print stopName + " not found"
+            Return false
+
+        displayRoute():
+            current = head
+            While current != null:
+                Print current.stopName + " → "
+                current = current.next
+
+Main Program:
+    route = new BusRoute()
+    route.addStop("Depot", null)
+    route.addStop("Main Street", "Depot")
+    route.addStop("City Mall", "Main Street")
+    route.addStop("Hospital", "City Mall")
+    route.addStop("Airport", "Hospital")
+
+    Print "Initial route:"
+    route.displayRoute()
+
+    route.addStop("University", "City Mall")
+    route.removeStop("Hospital")
+
+    Print "Updated route:"
+    route.displayRoute()
+
+    route.searchStop("Airport")   // should confirm it’s still in route
+
+
+
+
+*******************************************************************************************************************
+
+
+
+
+//Attendance Marker
+
+
+Class AttendanceSystem
+    Attributes:
+        attendance[students][days]  // 2D array (1=Present, 0=Absent)
+        totalStudents
+        totalDays
+
+    Methods:
+        markAttendance(studentId, day, status):
+            attendance[studentId][day] = status   // 1 or 0
+
+        dailySummary(day):
+            count = 0
+            For student = 1 to totalStudents:
+                If attendance[student][day] == 1:
+                    count++
+            Print "Students present on Day " + day + " = " + count
+
+        monthlySummary(studentId):
+            count = 0
+            For day = 1 to totalDays:
+                If attendance[studentId][day] == 1:
+                    count++
+            Print "Student " + studentId + " attended " + count + " days."
+            Return count
+
+        defaulterList():
+            For student = 1 to totalStudents:
+                presentDays = monthlySummary(student)
+                If presentDays < (0.75 * totalDays):
+                    Print "Defaulter → Student " + student
+
+Main Program:
+    system = new AttendanceSystem(30, 30)
+
+    // Example run
+    system.markAttendance(1, 1, 1)  // Student 1 Present on Day 1
+    system.markAttendance(3, 1, 0)  // Student 3 Absent on Day 1
+
+    system.dailySummary(10)   // "How many came on Day 10?"
+    system.monthlySummary(5)  // "How many days did Student 5 attend?"
+    system.defaulterList()    // List students < 75% attendance

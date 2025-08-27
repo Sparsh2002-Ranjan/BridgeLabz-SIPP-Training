@@ -1,0 +1,81 @@
+//Simple Word Counter
+
+
+Class WordCounter
+    Methods:
+        countWords(article):
+            words = split article into words
+            For each word in words:
+                word = lowercase(word)
+                word = remove punctuation
+                If word in map:
+                    map[word] = map[word] + 1
+                Else:
+                    map[word] = 1
+
+            sortedWords = sort map entries by value descending, then key ascending
+            For each entry in sortedWords:
+                Print entry.key + " → " + entry.value
+
+Main Program:
+    article = "Sports bring people together. Sports inspire teamwork. Sports create leaders."
+    counter = new WordCounter()
+    counter.countWords(article)
+
+
+
+
+*************************************************************************************************************************
+
+
+
+
+
+//Online Survey Report Generator
+
+Class SurveyResponse
+    Attributes:
+        restaurantName
+        rating  // 1 to 5
+
+Class SurveyReportGenerator
+    Methods:
+        generateReport(responses):
+            // Group ratings by restaurant
+            grouped = empty map
+            For each response in responses:
+                If response.restaurantName not in grouped:
+                    grouped[response.restaurantName] = empty list
+                Append response.rating to grouped[response.restaurantName]
+
+            // Calculate average rating per restaurant
+            averages = empty map
+            For each restaurant in grouped:
+                avg = sum(grouped[restaurant]) / count(grouped[restaurant])
+                averages[restaurant] = avg
+
+            Print "Average rating per restaurant:"
+            For each entry in averages:
+                Print entry.key + " → " + entry.value
+
+            // Find highest and lowest rated restaurants
+            highest = restaurant with max average
+            lowest = restaurant with min average
+            Print "Highest satisfaction: " + highest
+            Print "Needs improvement: " + lowest
+
+Main Program:
+    responses = [
+        SurveyResponse("PizzaHut", 4),
+        SurveyResponse("PizzaHut", 5),
+        SurveyResponse("KFC", 3),
+        SurveyResponse("KFC", 4),
+        SurveyResponse("Subway", 5),
+        SurveyResponse("Subway", 4),
+        SurveyResponse("Subway", 5)
+    ]
+
+    reportGenerator = new SurveyReportGenerator()
+    reportGenerator.generateReport(responses)
+
+
