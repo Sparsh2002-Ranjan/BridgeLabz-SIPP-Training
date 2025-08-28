@@ -1,0 +1,83 @@
+//Product Search Bar
+
+FUNCTION binarySearch(catalog, productName):
+    left ← 0
+    right ← length(catalog) - 1
+
+    WHILE left ≤ right:
+        mid ← (left + right) / 2
+        IF catalog[mid] == productName:
+            RETURN productName + " is available."
+        ELSE IF productName < catalog[mid]:
+            right ← mid - 1
+        ELSE:
+            left ← mid + 1
+
+    RETURN "❌ " + productName + " is not available."
+    
+
+// Example Run
+catalog = ["AirPods", "Backpack", "Camera", "Laptop", "Shoes", "Smartphone", "Watch"]
+
+PRINT binarySearch(catalog, "Laptop")     
+PRINT binarySearch(catalog, "Headphones") 
+PRINT binarySearch(catalog, "Shoes")      
+
+
+
+
+
+************************************************************************************************************************
+
+
+
+
+//Student Rank List Generator
+
+FUNCTION mergeSort(studentList):
+    IF length(studentList) ≤ 1:
+        RETURN studentList
+    
+    mid ← length(studentList) / 2
+    leftHalf ← mergeSort(studentList[0..mid])
+    rightHalf ← mergeSort(studentList[mid+1..end])
+    
+    RETURN merge(leftHalf, rightHalf)
+
+
+FUNCTION merge(left, right):
+    result ← empty list
+    i ← 0, j ← 0
+    
+    WHILE i < length(left) AND j < length(right):
+        IF left[i].marks > right[j].marks:
+            APPEND left[i] TO result
+            i ← i + 1
+        ELSE IF left[i].marks < right[j].marks:
+            APPEND right[j] TO result
+            j ← j + 1
+        ELSE:   // Marks are equal → compare names alphabetically
+            IF left[i].name < right[j].name:
+                APPEND left[i] TO result
+                i ← i + 1
+            ELSE:
+                APPEND right[j] TO result
+                j ← j + 1
+    
+    ADD remaining elements of left and right to result
+    RETURN result
+
+
+// Example Run
+students = [("Amit", 92), ("Bhavna", 92), ("Kiran", 85), ("Dinesh", 78), ("Charu", 92)]
+
+sortedList = mergeSort(students)
+
+PRINT sortedList
+// Output:
+// ("Amit", 92)
+// ("Bhavna", 92)
+// ("Charu", 92)
+// ("Kiran", 85)
+// ("Dinesh", 78)
+
