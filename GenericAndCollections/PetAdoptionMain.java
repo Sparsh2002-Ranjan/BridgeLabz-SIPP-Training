@@ -43,7 +43,7 @@ class PetAdoptionPortal<T extends Pet> {
     public List<T> getAvailablePets(String type, int maxAge) {
         List<T> available = new ArrayList<>();
         for (T pet : pets) {
-            if (!pet.isAdopted() && pet.getType().equalsIgnoreCase(type) && pet.getAge() <= maxAge) {
+            if (!pet.isAdopted()  && pet.getAge() <= maxAge) {
                 available.add(pet);
             }
         }
@@ -52,7 +52,7 @@ class PetAdoptionPortal<T extends Pet> {
 
     public boolean adoptPet(String type, int age) {
         for (T pet : pets) {
-            if (pet.getType().equalsIgnoreCase(type) && pet.getAge() == age && !pet.isAdopted()) {
+            if ( pet.getAge() == age && !pet.isAdopted()) {
                 pet.adopt();
                 return true;
             }
